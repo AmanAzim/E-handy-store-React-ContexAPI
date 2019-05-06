@@ -1,6 +1,6 @@
 /*This is the way to setup css variables that we can use later with the name of the variable "var(--mainBlue)" like shown below in the body*/
 :root {
-  --mainBlue:#2a2a72;
+  --mainRed:#E74F4F;
   --lightBlue:#009ffd ;
   --mainWhite:#f3f3f3;
   --mainDark:#232528;
@@ -18,8 +18,8 @@ body{
   letter-spacing: 0.3rem;
   text-transform: uppercase;
 }
-.text-blue {
-  color: var(--mainBlue);
+.text-red {
+  color: var(--mainRed);
 }
 .text-bright {
   color: var(--lightBlue);
