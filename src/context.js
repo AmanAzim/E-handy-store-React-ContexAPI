@@ -8,7 +8,7 @@ const ProductContext=React.createContext();
 class ProductProvider extends Component {
 
     state={
-        products:[...storeProducts],
+        products:[...storeProducts], //because the array is too big we kept in separate file and imported it.
         detailProduct:{...detailProduct},
     };
     handelDetail=()=>{
