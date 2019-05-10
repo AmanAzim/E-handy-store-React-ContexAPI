@@ -8,9 +8,25 @@ const ProductContext=React.createContext();
 class ProductProvider extends Component {
 
     state={
-        products:[...storeProducts], //because the array is too big we kept in separate file and imported it.
+        products:[], //because the array is too big we kept in separate file and imported it.
         detailProduct:{...detailProduct},
     };
+
+    setProducts=()=>{
+        let tempProducts=[];
+
+        storeProducts.forEach((item)=>{
+            const singleItem={...item};
+            tempProducts=[...tempProducts, singleItem];
+        });
+
+        this.setState({products:tempProducts});
+    };
+
+    componentDidMount() {
+        this.setProducts();
+    }
+
     handelDetail=()=>{
         console.log('Hello from detail')
     };
