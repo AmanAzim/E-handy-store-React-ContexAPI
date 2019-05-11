@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ProductContext} from '../context';
 import {NavLink} from 'react-router-dom';
-import {ButtonContainer} from './Button';
+import {ButtonContainerDark} from './Button';
 
 class Details extends Component {
 
@@ -29,6 +29,13 @@ class Details extends Component {
                         <h4 className="text-muted">Price: ${price}</h4>
                         <p className="mt-3 mb-0"><u><b>Product Info:</b></u></p>
                         <p className="text-muted">{info}</p>
+                        {/*Buttons*/}
+                        <div>
+                            <NavLink to="/"><ButtonContainerDark>Back to Products</ButtonContainerDark></NavLink>
+                            <ButtonContainerDark disabled={inCart} onClick={()=>this.context.addToCart(id)}>{/*We can also pass props to styled components like "cart" here*/}
+                                {inCart? 'In Cart':'Add to Cart'}
+                            </ButtonContainerDark>
+                        </div>
                     </div>
                 </div>
             </div>

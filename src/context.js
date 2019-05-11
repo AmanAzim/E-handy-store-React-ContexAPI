@@ -27,12 +27,21 @@ class ProductProvider extends Component {
         this.setProducts();
     }
 
-    handelDetail=()=>{
-        console.log('Hello from detail')
+    getItem=(id)=>{
+        const product=this.state.products.find((product)=>{
+            return product.id===id;
+        });
+
+        return product;
     };
-    addToCart=()=>{
-        console.log('Hello from cart')
+    handelDetail=(id)=>{
+        this.setState({detailProduct:this.getItem(id)});
     };
+    addToCart=(id)=>{
+        console.log(id+' added to cart');
+    };
+
+
 
     render() {
         return (                            //It is allowed to sent the whole state like this "...this.state"
