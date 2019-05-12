@@ -10,6 +10,9 @@ class ProductProvider extends Component {
     state={
         products:[], //because the array is too big we kept in separate file and imported it.
         detailProduct:{...detailProduct},
+        cart:[],
+        modalOpen:true,
+        modalProduct:{...detailProduct},
     };
 
     setProducts=()=>{
@@ -38,14 +41,37 @@ class ProductProvider extends Component {
         this.setState({detailProduct:this.getItem(id)});
     };
     addToCart=(id)=>{
-        console.log(id+' added to cart');
+       let tempProducts=[...this.state.products];
+       let index=tempProducts.findIndex(product=>product.id===id);
+       let product=tempProducts[index];
+        console.log('product: '+product);
+
+       product.inCart=true;
+       product.count=1;
+       let price=product.price;
+       product.total=price;
+
+       this.setState({products:tempProducts, cart:[...this.state.cart, product]});
+       console.log('state: '+this.state);
     };
 
-
+    openModal=(id)=>{
+        const product=this.getItem(id);
+        this.setState({modalProduct:product, modalOpen:true});
+    };
+    closeModal=()=>{
+      this.setState({modalOpen:false});
+    };
 
     render() {
         return (                            //It is allowed to sent the whole state like this "...this.state"
-            <ProductContext.Provider value={{...this.state, handelDetail:this.handelDetail, addToCart:this.addToCart}}>
+            <ProductContext.Provider
+                value={{...this.state,
+                    handelDetail:this.handelDetail,
+                    addToCart:this.addToCart,
+                    openModal:this.openModal,
+                    closeModal:this.closeModal}}>
+
                 {this.props.children}
             </ProductContext.Provider>
         );

@@ -25,7 +25,7 @@ class Product extends Component {
 
                         <NavLink to="/details"><img src={img} alt="product" className="card-img-top"/></NavLink>
 
-                        <button className="cart-btn" disabled={inCart} onClick={()=>console.log('add to cart')}>
+                        <button className="cart-btn" disabled={inCart} onClick={()=>this.context.addToCart(id)}>
                             {inCart? (<p className="mb-0">In Cart</p>):(<i className="fas fa-cart-plus"/>)}
                         </button>
 
