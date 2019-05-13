@@ -11,7 +11,7 @@ class ProductProvider extends Component {
         products:[], //because the array is too big we kept in separate file and imported it.
         detailProduct:{...detailProduct},
         cart:[],
-        modalOpen:true,
+        modalOpen:false,
         modalProduct:{...detailProduct},
     };
 
@@ -52,7 +52,7 @@ class ProductProvider extends Component {
        product.total=price;
 
        this.setState({products:tempProducts, cart:[...this.state.cart, product]});
-       console.log('state: '+this.state);
+       //console.log('state: '+this.state);
     };
 
     openModal=(id)=>{
@@ -60,6 +60,7 @@ class ProductProvider extends Component {
         this.setState({modalProduct:product, modalOpen:true});
     };
     closeModal=()=>{
+        console.log('closemodal')
       this.setState({modalOpen:false});
     };
 

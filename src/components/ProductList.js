@@ -9,7 +9,7 @@ class ProductList extends Component {
 
 
     render() {
-        console.log(this.context.products);
+        //console.log(this.context.products);
         return (
             <React.Fragment>
                 <div className="py-5">

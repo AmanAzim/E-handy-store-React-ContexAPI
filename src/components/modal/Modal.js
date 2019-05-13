@@ -1,0 +1,43 @@
+import React, {Component} from 'react';
+import {NavLink} from 'react-router-dom';
+import './Modal.css';
+import {ProductContext} from '../../context';
+import {ButtonContainerDark} from '../Button';
+import Styled from 'styled-components';
+
+
+class Modal extends Component {
+
+    static contextType=ProductContext;
+
+    render() {
+
+        const {img, title, price}=this.context.modalProduct;
+
+        let modal=null;
+
+        if(this.context.modalOpen){
+            modal=(
+                <div className="ModalContainer">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-8 col-md-6 col-lg-4 p-5 mx-auto text-center" id="modal">
+                                <h5>Item added to the cart</h5>
+                                <img src={img} className="img-fluid" alt="Product Image"></img>
+                                <h5>{title}</h5>
+                                <h5 className="text-muted">Price: ${price}</h5>
+
+                                <NavLink to="/"><ButtonContainerDark onClick={()=>this.context.closeModal()}>Continue Shopping</ButtonContainerDark></NavLink>
+                                <NavLink to="/cart"><ButtonContainerDark cart onClick={()=>this.context.closeModal()}>Go to Cart</ButtonContainerDark></NavLink>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        return (modal);
+    }
+}
+
+export default Modal;

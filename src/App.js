@@ -8,6 +8,7 @@ import ProductList from './components/ProductList';
 import Details from './components/Details';
 import Cart from './components/Cart';
 import PageNotFound from './components/PageNotFound';
+import Modal from './components/modal/Modal';
 
 
 
@@ -24,6 +25,7 @@ function App() {
               <Route component={PageNotFound}/> {/*To catch all the unknown route*/}
           </Switch>
 
+          <Modal/>
       </React.Fragment>
   );
 }
