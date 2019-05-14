@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {storeProducts, detailProduct} from './data';
 
 
+
 const ProductContext=React.createContext();
 
 //The Context Provider is already set up here in advance so we can use this as central state management/props handeling system
@@ -60,7 +61,6 @@ class ProductProvider extends Component {
         this.setState({modalProduct:product, modalOpen:true});
     };
     closeModal=()=>{
-        console.log('closemodal')
       this.setState({modalOpen:false});
     };
 

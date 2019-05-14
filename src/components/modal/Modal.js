@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 import './Modal.css';
 import {ProductContext} from '../../context';
 import {ButtonContainerDark} from '../Button';
@@ -11,7 +11,10 @@ class Modal extends Component {
     static contextType=ProductContext;
 
     render() {
-
+        //https://medium.freecodecamp.org/hitchhikers-guide-to-react-router-v4-4b12e369d10
+        //console.log(this.props.location);//Will give the full path address of current route
+        //console.log(this.props.match);//Will give the path address that matches to all the paths
+        //console.log(this.props.history);
         const {img, title, price}=this.context.modalProduct;
 
         let modal=null;
@@ -27,7 +30,10 @@ class Modal extends Component {
                                 <h5>{title}</h5>
                                 <h5 className="text-muted">Price: ${price}</h5>
 
-                                <NavLink to="/"><ButtonContainerDark onClick={()=>this.context.closeModal()}>Continue Shopping</ButtonContainerDark></NavLink>
+                                <NavLink to={this.props.location.pathname}>
+
+                                </NavLink>
+                                <ButtonContainerDark onClick={()=>this.context.closeModal()}>Continue Shopping</ButtonContainerDark>
                                 <NavLink to="/cart"><ButtonContainerDark cart onClick={()=>this.context.closeModal()}>Go to Cart</ButtonContainerDark></NavLink>
                             </div>
                         </div>
@@ -40,4 +46,4 @@ class Modal extends Component {
     }
 }
 
-export default Modal;
+export default withRouter(Modal);
