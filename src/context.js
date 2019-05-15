@@ -11,7 +11,7 @@ class ProductProvider extends Component {
     state={
         products:[], //because the array is too big we kept in separate file and imported it.
         detailProduct:{...detailProduct},
-        cart:[],
+        cart:storeProducts,
         modalOpen:false,
         modalProduct:{...detailProduct},
         cartSubtotal:0,
