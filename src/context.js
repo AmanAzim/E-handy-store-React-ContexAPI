@@ -11,7 +11,7 @@ class ProductProvider extends Component {
     state={
         products:[], //because the array is too big we kept in separate file and imported it.
         detailProduct:{...detailProduct},
-        cart:storeProducts,
+        cart:[],
         modalOpen:false,
         modalProduct:{...detailProduct},
         cartSubtotal:0,
@@ -75,7 +75,17 @@ class ProductProvider extends Component {
         console.log('decrement');
     };
     removeItem=(id)=>{
-        console.log('remove item');
+        let tempProducts=[...this.state.products];
+        let index=tempProducts.findIndex(item=>item.id===id);
+        let product=tempProducts[index];
+
+        product.inCart=false;
+        product.count=0;
+        product.total=0;
+
+        let tempCart=this.state.cart.filter(item=>item.id!==id);
+
+        this.setState({products:tempProducts, cart:tempCart});
     };
     clearCart=()=>{
         console.log('clear cart');

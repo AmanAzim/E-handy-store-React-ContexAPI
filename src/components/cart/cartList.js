@@ -3,8 +3,8 @@ import {ProductContext} from '../../context';
 import CartItem from './cartItem';
 
 const CartList = () => {
-    const context=useContext(ProductContext);
 
+    const context=useContext(ProductContext);
 
     return (
         <div className="container-fluid">
