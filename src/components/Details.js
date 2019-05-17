@@ -32,7 +32,7 @@ class Details extends Component {
                         {/*Buttons*/}
                         <div>
                             <NavLink to="/"><ButtonContainerDark>Back to Products</ButtonContainerDark></NavLink>
-                            <ButtonContainerDark cart disabled={inCart} onClick={()=>{this.context.handelDetail(id); this.context.openModal(id);}}>{/*We can also pass props to styled components like "cart" here*/}
+                            <ButtonContainerDark cart disabled={inCart} onClick={()=>{this.context.addToCart(id); this.context.openModal(id);}}>{/*We can also pass props to styled components like "cart" here*/}
                                 {inCart? 'In Cart':'Add to Cart'}
                             </ButtonContainerDark>
                         </div>

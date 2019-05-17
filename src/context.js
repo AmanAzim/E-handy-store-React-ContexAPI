@@ -48,15 +48,13 @@ class ProductProvider extends Component {
        let tempProducts=[...this.state.products];
        let index=tempProducts.findIndex(product=>product.id===id);
        let product=tempProducts[index];
-        console.log('product: '+product);
 
        product.inCart=true;
        product.count=1;
-       let price=product.price;
-       product.total=price;
+       const tempPrice=product.price;
+       product.total=tempPrice;
 
-       this.setState({products:tempProducts, cart:[...this.state.cart, product]});
-       //console.log('state: '+this.state);
+       this.setState({products:tempProducts, cart:[...this.state.cart, product]}, ()=>{this.addTotal()} );
     };
 
     openModal=(id)=>{
@@ -74,6 +72,19 @@ class ProductProvider extends Component {
     decrement=(id)=>{
         console.log('decrement');
     };
+    addTotal=()=>{
+        let subTotal=0;
+        for(let i=0;i<this.state.cart.length;i++){
+            subTotal +=this.state.cart[i].total;
+        }
+        console.log('subTotal:'+subTotal);
+        let tempTax=subTotal*0.1;
+        tempTax=parseFloat(tempTax.toFixed(2));
+
+        let total=subTotal+tempTax;
+
+        this.setState({cartSubtotal:subTotal, cartTax:tempTax, cartTotal:total});
+    };
     removeItem=(id)=>{
         let tempProducts=[...this.state.products];
         let index=tempProducts.findIndex(item=>item.id===id);
@@ -88,7 +99,19 @@ class ProductProvider extends Component {
         this.setState({products:tempProducts, cart:tempCart});
     };
     clearCart=()=>{
-        console.log('clear cart');
+       let tempProducts=[...this.state.products];
+       tempProducts.map(item=>{
+           item.inCart=false;
+           item.count=0;
+           item.total=0;
+       });
+       this.setState({products:tempProducts, cart:[], cartSubtotal:0, cartTax:0, cartTotal:0});
+
+       //Instead of all these we can set the old state of all the products back by :
+      /*  this.setState({cart:[]}, ()=>{
+            this.setProducts();
+            this.addTotal();//for safety
+        }); */
     };
 
     render() {
