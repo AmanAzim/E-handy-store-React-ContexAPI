@@ -67,10 +67,32 @@ class ProductProvider extends Component {
 
 
     increment=(id)=>{
-        console.log('increment')
+       let tempCart=[...this.state.cart];
+       let index=tempCart.findIndex(item=>item.id===id);
+       let product=tempCart[index];
+
+       product.count++;
+       product.total+=product.price;
+
+       this.setState({cart:tempCart}, ()=>{this.addTotal();})
     };
     decrement=(id)=>{
-        console.log('decrement');
+        let tempCart=[...this.state.cart];
+        let index=tempCart.findIndex(item=>item.id===id);
+        let product=tempCart[index];
+
+        product.count--;
+        product.total-=product.price;
+
+        if(product.count<=0){
+           // product.inCart=false;
+           // product.count=0;
+           // product.total=0;
+           // tempCart.splice(index, 1);
+            this.removeItem(id);
+        } else {
+            this.setState({cart:tempCart}, ()=>{this.addTotal();});
+        }
     };
     addTotal=()=>{
         let subTotal=0;
@@ -96,7 +118,7 @@ class ProductProvider extends Component {
 
         let tempCart=this.state.cart.filter(item=>item.id!==id);
 
-        this.setState({products:tempProducts, cart:tempCart});
+        this.setState({products:tempProducts, cart:tempCart}, ()=>{this.addTotal()});
     };
     clearCart=()=>{
        let tempProducts=[...this.state.products];
