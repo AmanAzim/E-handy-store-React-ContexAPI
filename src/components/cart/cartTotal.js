@@ -15,8 +15,8 @@ const CartTotal = (props) => {
                     <div className="col-10 col-sm-8 mt-2 ml-sm-5 ml-md-auto text-capitalize text-right">
                         <button className="btn btn-outline-danger mb-3 px-5" onClick={()=>context.clearCart()}>CLEAR CART</button>
                         <h5><span className="text-title">Subtotal : </span><b>${cartSubtotal}</b></h5>
-                        <h5><span className="text-title">Tax : </span><b>{cartTax}</b></h5>
-                        <h5><span className="text-title">Cart Total : </span><b>{cartTotal}</b></h5>
+                        <h5><span className="text-title">Tax : </span><b>${cartTax}</b></h5>
+                        <h5><span className="text-title">Cart Total : </span><b>${cartTotal}</b></h5>
                     </div>
                 </div>
             </div>

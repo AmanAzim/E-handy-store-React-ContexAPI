@@ -31,9 +31,9 @@ class Modal extends Component {
                                 <h5 className="text-muted">Price: ${price}</h5>
 
                                 <NavLink to={this.props.location.pathname}>
-
+                                    <ButtonContainerDark onClick={()=>this.context.closeModal()}>Continue Shopping</ButtonContainerDark>
                                 </NavLink>
-                                <ButtonContainerDark onClick={()=>this.context.closeModal()}>Continue Shopping</ButtonContainerDark>
+
                                 <NavLink to="/cart"><ButtonContainerDark cart onClick={()=>this.context.closeModal()}>Go to Cart</ButtonContainerDark></NavLink>
                             </div>
                         </div>

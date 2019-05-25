@@ -12,7 +12,6 @@ const CartList = () => {
                     return <CartItem key={item.id} item={item}/>
                 })
             }
-
         </div>
     );
 };
