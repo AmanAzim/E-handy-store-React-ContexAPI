@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {NavLink} from 'react-router-dom';
+import PayPalButton from './PayPalButton';
 import {ProductContext} from '../../context';
 
 const CartTotal = (props) => {
@@ -17,6 +17,7 @@ const CartTotal = (props) => {
                         <h5><span className="text-title">Subtotal : </span><b>${cartSubtotal}</b></h5>
                         <h5><span className="text-title">Tax : </span><b>${cartTax}</b></h5>
                         <h5><span className="text-title">Cart Total : </span><b>${cartTotal}</b></h5>
+                        <PayPalButton total={cartTotal} clearCart={context.clearCart}/>
                     </div>
                 </div>
             </div>
